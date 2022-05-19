@@ -37,6 +37,15 @@ public class EmployeeController {
 
     }
 
+    @RequestMapping("/employees/employee/addForm")
+    public String showEmployeeForm(Model theModel){
+
+        Employee employee = new Employee();
+
+        theModel.addAttribute("add_employee", employee);
+
+        return "employee_form";
+    }
 
 
 }
