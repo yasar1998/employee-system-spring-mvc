@@ -64,4 +64,13 @@ public class EmployeeController {
         return "edit_form";
 
     }
+
+    @RequestMapping("/employees/processEdit")
+    public String updateEmployee(@ModelAttribute("edit_employee") Employee employee){
+
+        employeeService.updateRecord(employee);
+
+        return "redirect:/mvc/employees/list";
+
+    }
 }
