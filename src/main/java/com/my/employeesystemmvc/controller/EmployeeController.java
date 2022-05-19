@@ -2,6 +2,8 @@ package com.my.employeesystemmvc.controller;
 
 import com.my.employeesystemmvc.model.Employee;
 import com.my.employeesystemmvc.service.EmployeeService;
+import com.my.employeesystemmvc.validation.groups.AddValidation;
+import com.my.employeesystemmvc.validation.groups.UpdateValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +50,11 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employees/employee/processAdd")
-    public String addEmployee(@ModelAttribute("add_employee") Employee employee){
+    public String addEmployee(@Validated(AddValidation.class) @ModelAttribute("add_employee") Employee employee, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "employee_form";
+        }
 
         employeeService.addRecord(employee);
 
@@ -56,7 +62,7 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employees/editForm")
-    public String updateEmployee(@ModelAttribute("id") Integer id, Model theModel){
+    public String showEmployeeEditForm(@ModelAttribute("id") Integer id, Model theModel){
 
         Employee employee = employeeService.getRecordById(id);
         theModel.addAttribute("edit_employee", employee);
@@ -66,7 +72,11 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employees/processEdit")
-    public String updateEmployee(@ModelAttribute("edit_employee") Employee employee){
+    public String updateEmployee(@Validated(UpdateValidation.class) @ModelAttribute("edit_employee") Employee employee, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "edit_form";
+        }
 
         employeeService.updateRecord(employee);
 
