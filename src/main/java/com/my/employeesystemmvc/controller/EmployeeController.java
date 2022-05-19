@@ -28,6 +28,15 @@ public class EmployeeController {
 
     }
 
+    @RequestMapping("/employees/delete")
+    public String deleteEmployee(@RequestParam("id") Integer id){
+
+        employeeService.deleteRecord(id);
+
+        return "redirect:/mvc/employees/list";
+
+    }
+
 
 
 }
