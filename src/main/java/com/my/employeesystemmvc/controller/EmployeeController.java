@@ -47,5 +47,11 @@ public class EmployeeController {
         return "employee_form";
     }
 
+    @RequestMapping("/employees/employee/processAdd")
+    public String addEmployee(@ModelAttribute("add_employee") Employee employee){
 
+        employeeService.addRecord(employee);
+
+        return "redirect:/mvc/employees/list";
+    }
 }
