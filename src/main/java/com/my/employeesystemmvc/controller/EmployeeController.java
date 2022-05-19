@@ -54,4 +54,14 @@ public class EmployeeController {
 
         return "redirect:/mvc/employees/list";
     }
+
+    @RequestMapping("/employees/editForm")
+    public String updateEmployee(@ModelAttribute("id") Integer id, Model theModel){
+
+        Employee employee = employeeService.getRecordById(id);
+        theModel.addAttribute("edit_employee", employee);
+
+        return "edit_form";
+
+    }
 }
