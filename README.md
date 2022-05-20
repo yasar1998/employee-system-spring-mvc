@@ -11,5 +11,5 @@ Java 11, Maven, Spring Boot, JPA, H2 database, Hibernate Validator, Thymeleaf, P
 Application is executing script on-startup to create the necessary table to use further.
 
 #### Hibernate Validator
-- Validator has been configured inside validation configuration file to provide DI (dependency injection) functionality.
+- Validator has been configured inside validation configuration file to provide DI (dependency injection).
 - Custom validation and groups have been created to manage the object for two different scenarios (add and update case).
